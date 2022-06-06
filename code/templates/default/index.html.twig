@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Tasks</h1>
+    <h2>Create task</h2>
+    {% include "flashes.html.twig" %}
+    {{ form(form) }}
+
+    <h2>Your tasks</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Start</th>
+                <th>End</tbh>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.description }}</td>
+                <td>{{ task.start | date }}</td>
+                <td>{{ task.finish | date }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
