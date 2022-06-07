@@ -7,17 +7,21 @@
     {{ form(form) }}
 
     <h2>Your tasks</h2>
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Description</th>
-                <th>Start</th>
-                <th>End</tbh>
+                <th scope="col">ID</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
             </tr>
         </thead>
         <tbody>
         {% for task in tasks %}
             <tr>
+                <th scope="row">{{ task.id }}</th>
+                <td>{{ task.category.name }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.start | date }}</td>
                 <td>{{ task.finish | date }}</td>

@@ -14,6 +14,27 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <main>
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-4">Challenge Project</span>
+                </a>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="{{ path('app_tasks') }}" class="nav-link">Tasks</a></li>
+                    <li class="nav-item"><a href="{{ path('app_categories') }}" class="nav-link">Categories</a></li>
+                    <li class="nav-item"><a href="{{ path('app_api_tasks') }}" class="nav-link">Simple Api (admin:admin)</a></li>
+                </ul>
+            </header>
+        </div>
+    </main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
     </body>
 </html>

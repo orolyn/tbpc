@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Validator as AppAssert;
 
+#[AppAssert\TaskDateTimeRange(options: ['startField' => 'start', 'endField' => 'finish'])]
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
 {
@@ -21,6 +23,10 @@ class Task
 
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
+
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
 
     public function getId(): ?int
     {
@@ -59,6 +65,18 @@ class Task
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

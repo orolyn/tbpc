@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Task;
+use DateInterval;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +39,27 @@ class TaskRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @param DateTime $dateTime
+     * @return Task[]
+     */
+    public function getTasksStartingOnDay(DateTime $dateTime): array
+    {
+        $start = clone $dateTime;
+        $start->setTime(0, 0);
+
+        $end = clone $start;
+        $end->add(DateInterval::createFromDateString('1 day'));
+
+        $qb = $this->createQueryBuilder('t');
+        $qb
+            ->where($qb->expr()->between('t.start', ':start', ':end'))
+            ->setParameter('start', $start)
+            ->setParameter('end', $end);
+
+        return $qb->getQuery()->getResult();
     }
 
 //    /**
