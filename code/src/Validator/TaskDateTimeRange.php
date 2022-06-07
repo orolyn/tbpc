@@ -11,9 +11,6 @@ use Symfony\Component\Validator\Constraint;
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class TaskDateTimeRange extends Constraint
 {
-    public string $startField;
-    public string $endField;
-
     public function getTargets()
     {
         return self::CLASS_CONSTRAINT;

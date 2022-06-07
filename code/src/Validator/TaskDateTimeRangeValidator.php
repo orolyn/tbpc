@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 
 class TaskDateTimeRangeValidator extends ConstraintValidator
 {
-    private const LIMIT = 8;
+    public const LIMIT = 8;
 
     public function __construct(
         private TaskRepository $taskRepository

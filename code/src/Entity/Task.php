@@ -6,7 +6,7 @@ use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Validator as AppAssert;
 
-#[AppAssert\TaskDateTimeRange(options: ['startField' => 'start', 'endField' => 'finish'])]
+#[AppAssert\TaskDateTimeRange()]
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
 {
